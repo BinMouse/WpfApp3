@@ -14,4 +14,10 @@
     <PackageReference Include="WriteableBitmapEx" Version="1.6.8" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="midi.mid">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
