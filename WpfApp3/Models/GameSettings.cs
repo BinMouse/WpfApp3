@@ -12,8 +12,12 @@ namespace WpfApp3.Models
     /// </summary>
     class GameSettings
     {   
+        /// <summary>
+        /// Громкость игры
+        /// </summary>
         public int volume { get; set; }
-        public GameSettings(int volume)
+
+        public GameSettings(int volume = 100)
         {
             this.volume = volume;
         }
