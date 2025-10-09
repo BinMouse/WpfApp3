@@ -18,7 +18,6 @@ namespace WpfApp3
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MidiOut midiOut = new MidiOut(0);
         private IMidiIinput midiInput;
         public MainWindow()
         {
@@ -41,14 +40,13 @@ namespace WpfApp3
 
         private void MiDIinput_KeyUp(object? sender, int e)
         {
-            midiOut.Send(MidiMessage.StopNote(e, 127, 2).RawData);
             Dispatcher.Invoke(()=> DrawNote(e - 36, 0));
         }
 
         private void MiDIinput_KeyDown(object? sender, int e)
         {
             Console.WriteLine(e);
-            midiOut.Send(MidiMessage.StartNote(e, 127, 2).RawData);
+            
             Dispatcher.Invoke(() => DrawNote(e - 36, 127));
         }
 
@@ -112,7 +110,6 @@ namespace WpfApp3
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            midiOut.Volume= 65535;
             //MidiFile file = new MidiFile("D:/Work/Karaoke for hands/Midi/К Элизе 6 (Фортепиано).mid");
             MidiFile file = new MidiFile("midi.mid");
 
@@ -140,11 +137,9 @@ namespace WpfApp3
                 //RenderFlow(file.Events[0], (int)evt2.AbsoluteTime);
                 if (evt.Velocity > 0)
                 {
-                    midiOut.Send(MidiMessage.StartNote(evt.NoteNumber, 127, evt.Channel).RawData);
                 }
                 else
                 {
-                    midiOut.Send(MidiMessage.StopNote(evt.NoteNumber, 127, evt.Channel).RawData);
                 }
             }
         }
