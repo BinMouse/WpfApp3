@@ -13,5 +13,8 @@ namespace WpfApp3
     /// </summary>
     public partial class App : Application
     {
+        GameManager gameManager;
+        AudioManager audioManager;
+        MainWindow window;
     }
 }
